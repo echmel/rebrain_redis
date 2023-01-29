@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"strconv"
 )
@@ -35,6 +36,6 @@ func main() {
 		if _, e := os.Stdout.Write(bytes); e != nil {
 			panic(e)
 		}
+		fmt.Print("\n")
 	}
-
 }

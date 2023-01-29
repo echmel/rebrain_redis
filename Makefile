@@ -7,5 +7,5 @@ run_task6:
 go_install:
 	# sudo snap install go --classic
 
-redis-cli SET cmd-lenq "/home/user/rebrain_redis/bin/task6"
-redis-cli SET cmd-ldeq "/home/user/rebrain_redis/bin/task6_2"
+#redis-cli SET cmd-lenq "/home/user/rebrain_redis/bin/task6"
+#redis-cli SET cmd-ldeq "/home/user/rebrain_redis/bin/task6_2"

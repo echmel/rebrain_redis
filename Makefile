@@ -14,6 +14,7 @@ go_install:
 
 init_redis:
 	redis-cli SET cmd-shuf "/home/user/rebrain_redis/bin/task9"
+	redis-cli SET cmd-7777 "/home/user/rebrain_redis/bin/task9_2"
 
 #redis-cli SET cmd-lenq "/home/user/rebrain_redis/bin/task6"
 #redis-cli SET cmd-ldeq "/home/user/rebrain_redis/bin/task6_2"

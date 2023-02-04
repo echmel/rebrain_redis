@@ -40,5 +40,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Print(msg.String())
+	fmt.Println(msg.Payload)
 }

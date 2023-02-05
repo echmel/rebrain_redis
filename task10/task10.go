@@ -52,9 +52,28 @@ func main() {
 	}
 	lists := args[1:]
 
+	ch := make(chan struct{})
 	service := New(redisClient)
 	timeCtx, cancel := context.WithTimeout(ctx, time.Second*5)
 	defer cancel()
+	go func() {
+		funcName(timeCtx, ch, intCount, lists, service)
+	}()
+
+	select {
+	case <-timeCtx.Done():
+		_, ok := timeCtx.Deadline()
+		if !ok {
+			os.Exit(1)
+		}
+		if err := timeCtx.Err(); err != nil {
+			os.Exit(1)
+		}
+	case <-ch:
+	}
+}
+
+func funcName(timeCtx context.Context, ch chan struct{}, intCount int, lists []string, service *RedisService) {
 	for intCount > 0 {
 		// BLMPOP timeout numkeys key [key ...] LEFT|RIGHT [COUNT count]
 		keyNumbers := strconv.Itoa(len(lists))
@@ -85,7 +104,7 @@ func main() {
 			fmt.Println(fmt.Sprintf("%s %s", key, v))
 		}
 	}
-
+	ch <- struct{}{}
 }
 
 func interfaceSLiceToStrSlice(vals []interface{}) []string {

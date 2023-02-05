@@ -1,4 +1,6 @@
 build:
+	go mod tidy
+	go mod vendor
 	#go build -o ./bin/task6 ./task6/task6.go
 	#go build -o ./bin/task6_2 ./task6_2/task6_2.go
 	#go build -o ./bin/task7_1 ./task7_1/task7_1.go
